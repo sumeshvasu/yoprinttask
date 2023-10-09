@@ -18,3 +18,5 @@
 
 - run in new console : redis-server
 - run in new console : php artisan queue:listen --timeout=0
+- run in new console : php artisan horizon
+- horizon URI: <BaseUrl>/horizon/dashboard
