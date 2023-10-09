@@ -1,8 +1,16 @@
 <?php
+/**
+ * Model : User.
+ *
+ * This file used to handle users table
+ *
+ * @author Sumesh K V <sumeshvasu@gmail.com>
+ *
+ * @version 1.0
+ */
 
-namespace App\Models;
+namespace App\Models\Entities;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
