@@ -15,5 +15,6 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/upload-history-list', [HomeController::class, 'getUploadHistoryList'])->name('upload.history.list');
 Route::post('/implort-csv', [HomeController::class, 'store'])->name('store');
 Route::post('uploads', [HomeController::class, 'uploads'])->name('uploads');

@@ -44,6 +44,17 @@ class HomeController extends Controller
         return view('welcome', $data);
     }
 
+    public function getUploadHistoryList()
+    {
+        $result = $this->uploadHistory->getList();
+
+        foreach ($result as $key => $value) {
+            $result[$key]->time_details = $value->created_at . '<br/>' . displayReadableTimeDifference($value->created_at, $value->updated_at) . ' minutes ago';
+        }
+
+        return $result;
+    }
+
     /**
      * Store products to darabase.
      *

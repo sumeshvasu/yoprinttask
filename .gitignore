@@ -3,6 +3,7 @@
 /public/build
 /public/hot
 /public/storage
+/public/.DS_Store
 /storage/*.key
 /vendor
 /storage/CSV/
@@ -11,6 +12,7 @@ dump.rdb
 .env.backup
 .env.production
 .phpunit.result.cache
+.DS_Store
 composer.lock
 Homestead.json
 Homestead.yaml

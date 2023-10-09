@@ -56,9 +56,11 @@
                 <div class="card">
                     <div class="card-header" style="background: gray; color:#f1f7fa; font-weight:bold;">
                         Uploads History
+                        <span><img id="loaderImg" class="mt-1" src="/loader.gif"
+                                style="width:15px; float:right;"></span>
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover bravo-list-item d-block overflow-auto text-nowrap">
+                        <table class="table table-hover overflow-auto text-nowrap">
                             <thead>
                                 <tr>
                                     <th>Time</th>
@@ -67,7 +69,7 @@
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody id="bodyData">
                                 @foreach ($result as $key => $fileData)
                                     <tr>
                                         <td>{{ $fileData->created_at }}<br />
@@ -121,6 +123,40 @@
                     }
                 @endif
             }
+        }
+
+        $(document).ready(function() {
+            $('#loaderImg').hide();
+
+            setInterval(() => {
+                getUploadHistoryList();
+            }, 5000);
+        });
+
+        function getUploadHistoryList() {
+            $('#loaderImg').show();
+
+            $.ajax({
+                url: "{{ route('upload.history.list') }}",
+                type: "GET",
+                cache: false,
+                dataType: 'json',
+                success: function(dataResult) {
+                    var resultData = dataResult;
+                    var bodyData = '';
+                    var i = 1;
+                    $.each(resultData, function(index, row) {
+                        bodyData += "<tr>"
+                        bodyData += "<td>" + row.time_details + "</td><td>" + row.file_name +
+                            "</td><td>" + row.status + "</td>";
+                        bodyData += "</tr>";
+                    });
+
+                    $("#bodyData").html('');
+                    $("#bodyData").append(bodyData);
+                    $('#loaderImg').hide();
+                }
+            });
         }
     </script>
 </body>
